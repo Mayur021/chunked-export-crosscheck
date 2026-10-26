@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chunked-export-crosscheck"
+version = "0.1.0"
+description = "Cross-check of a reversibility fold against the agent-evidence-vectors chunked-export corpus"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+dependencies = []
+
+[project.optional-dependencies]
+# Both sides are pinned exactly, because what this repository records is a claim
+# about two specific releases. A floor on either would make the result mean
+# something different from one run to the next, which is the one thing a
+# cross-check cannot afford.
+#
+# agent-evidence-vectors is held at 0.22.0 and bumps are reviewed by hand rather
+# than taken automatically, because the sets rule and the order of the seal and
+# composition checks are both marked Proposed upstream. Re-checked 2026-10-26:
+# chunkedexport.py and the whole vectors-chunked-export tree are byte-identical
+# in the 0.22.0, 0.25.0 and 0.26.0 wheels, so the pin is not holding anything back.
+test = [
+  "pytest>=7.0",
+  "agent-evidence-vectors==0.22.0",
+  "reversibility-action-class-conformance @ git+https://github.com/Mayur021/aisvs-c9-action-class-conformance@v1.3.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
