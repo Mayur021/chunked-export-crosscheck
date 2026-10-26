@@ -7,7 +7,10 @@ name = "chunked-export-crosscheck"
 version = "0.1.0"
 description = "Cross-check of a reversibility fold against the agent-evidence-vectors chunked-export corpus"
 readme = "README.md"
-requires-python = ">=3.9"
+# 3.11 is not a preference. agent-evidence-vectors 0.22.0 declares
+# Requires-Python >=3.11, so the corpus cannot be installed below it and a
+# cross-check that cannot install one side has nothing to say.
+requires-python = ">=3.11"
 license = "Apache-2.0"
 dependencies = []
 
