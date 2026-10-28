@@ -72,6 +72,7 @@ def _vectors():
             marks.append(
                 pytest.mark.xfail(
                     strict=True,
+                    raises=AssertionError,
                     reason=(
                         "the fold is a maximum over declared step classes and "
                         "cannot represent composition by reconstruction threshold"
